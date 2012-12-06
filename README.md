@@ -5,7 +5,7 @@ Helpers for ProPresenter (Win)
 
 ## Features ##
 
-Import songs (with arrangements) from PCO into ProPresenter.
+Import songs (with arrangements) from Planning Center Online (PCO) into ProPresenter.
 
 ![Screenshot](https://raw.github.com/peschuster/propresenter-tools/master/docs/screen1.png)
 
