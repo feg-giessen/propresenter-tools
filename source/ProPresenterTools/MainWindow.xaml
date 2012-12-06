@@ -1,0 +1,43 @@
+﻿<Window x:Class="ProPresenterTools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ProPresenter: PCO Song Importer" Height="633.35" Width="1017">
+    <Grid>
+        <Button Content="Get Songs" Name="btnGetSongs" HorizontalAlignment="Left" Margin="22,19,0,0" VerticalAlignment="Top" Width="75" Click="OnButton1Click" RenderTransformOrigin="0.467,0.455"/>
+
+        <DataGrid Name="ltbSongs" EnableRowVirtualization="True" HorizontalAlignment="Left" Margin="22,63,0,22" VerticalAlignment="Stretch" Width="296" ItemsSource="{Binding Path=Songs}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Pco.Id}" Header="Id" IsReadOnly="True" Width="55" />
+                <DataGridTextColumn Binding="{Binding Path=Pco.Title}" Header="Title" IsReadOnly="True" Width="200" />
+                <DataGridCheckBoxColumn Binding="{Binding Path=Imported}" Header="" IsReadOnly="True" Width="15" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <RichTextBox ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" Margin="335,232,20,20" VerticalAlignment="Stretch" Name="txbText" Loaded="txbText_Loaded">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="{Binding Path=CurrentText}"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <DataGrid HorizontalAlignment="Stretch" Margin="335,137,20,0" VerticalAlignment="Top" Height="77" ItemsSource="{Binding Path=Current.Arrangements}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Arrangement.Name}" Header="Name" IsReadOnly="False" Width="160" />
+                <DataGridTextColumn Binding="{Binding Path=ViewSequence}" Header="Sequence" IsReadOnly="False" Width="340" />
+                <DataGridCheckBoxColumn Binding="{Binding Path=Imported}" Header="" IsReadOnly="True" Width="15" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Content="Import" Width="80" Height="22" Tag="{Binding Path=Arrangement.Id}" Click="OnArrangementRefreshClicked" />
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Import" Name="btnImport" HorizontalAlignment="Right" Margin="0,65,20,0" VerticalAlignment="Top" Width="86" Click="OnImportClicked"/>
+        <Button Content="Overwrite" Name="btnOverwrite" IsEnabled="{Binding Path=Current.Imported}" HorizontalAlignment="Right" Margin="0,95,20,0" VerticalAlignment="Top" Width="86" Click="OnOverwriteClicked"/>
+        <Label Content="Lable:" HorizontalAlignment="Left" Margin="335,65,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="391,71,0,0" TextWrapping="Wrap" Text="{Binding Path=Current.CurrentLabels}" VerticalAlignment="Top" Width="439"/>
+    </Grid>
+</Window>
