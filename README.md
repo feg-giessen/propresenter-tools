@@ -7,6 +7,8 @@ Helpers for ProPresenter (Win)
 
 Import songs (with arrangements) from PCO into ProPresenter.
 
+![Screenshot](https://raw.github.com/peschuster/propresenter-tools/master/docs/screen1.png)
+
 
 ## Getting started ##
 
